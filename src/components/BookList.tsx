@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from "axios";
 
 import BookListItem from "./BookListItem";
 import Book from "../types/Book";
+import LoadingSpinner from "./shared/LoadingSpinner";
 
 interface Props {
   onShowDetails: (book: Book) => void;
@@ -11,18 +12,27 @@ interface Props {
 export default function BookList(props: Props): ReactElement {
   const [books, setBooks] = useState<Book[]>();
 
-  useEffect(() => {
+  const getBooks = () => {
     axios({
       method: "get",
       url: "https://api3.angular-buch.com/books",
     }).then((response: AxiosResponse<Book[]>) => setBooks(response.data));
-  }, []);
+  };
+
+  useEffect(getBooks, []);
 
   if (!books) {
-    return <p>Lade</p>;
+    return <LoadingSpinner name="Bücher" />;
   }
 
-  return (
+  const onReset = () => {
+    axios({
+      method: "delete",
+      url: "https://api3.angular-buch.com/books",
+    }).then(getBooks);
+  };
+
+  return books.length !== 0 ? (
     <ul className="content m-2">
       {books.map((book) => (
         <BookListItem
@@ -32,5 +42,17 @@ export default function BookList(props: Props): ReactElement {
         />
       ))}
     </ul>
+  ) : (
+    <article className="message is-info">
+      <div className="message-header">
+        <p>Info</p>
+      </div>
+      <div className="message-body">
+        Keine Bücher vorhanden!{" "}
+        <button onClick={onReset} className="button is-link">
+          Reset
+        </button>
+      </div>
+    </article>
   );
 }
