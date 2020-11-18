@@ -3,7 +3,6 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:react-hooks/recommended",
-    "plugin:react-perf/recommended",
     "plugin:@typescript-eslint/recommended",
   ],
   parserOptions: {
@@ -22,7 +21,7 @@ module.exports = {
       version: "detect",
     },
   },
-  plugins: ["react", "react-perf", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint"],
   rules: {
     // https://github.com/typescript-eslint/typescript-eslint/issues/363
     "@typescript-eslint/no-unused-vars": "off",
