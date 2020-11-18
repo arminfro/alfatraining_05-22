@@ -1,0 +1,64 @@
+# list of all books
+GET https://api3.angular-buch.com/books
+
+# list of all books, on secure route
+GET {{API_URL}}/secure/books
+Authorization: Bearer {{TOKEN}}
+
+# on specific book
+GET {{API_URL}}/book/9783864906466
+
+# search for specific book
+GET {{API_URL}}/books/search/angu
+
+# reset store to intitial state
+DELETE {{API_URL}}/books
+
+# create new book
+POST {{API_URL}}/book
+Content-Type: application/json
+
+{
+  "title": "book of books",
+  "subtitle": "collection summary",
+  "isbn": "1850486691",
+  "description": "read me",
+  "authors": [
+    "Max",
+    "Lisa"
+  ],
+  "thumbnails": [
+    {
+      "title": "",
+      "url": "https://ng-buch.de/public/monkey-thinking.svg"
+    }
+  ],
+  "published": "0042-04-01"
+}
+
+# update existing book
+PUT {{API_URL}}/book/9783864906466
+Content-Type: application/json
+
+ {
+    "isbn": "9783864906466",
+    "title": "Angular!!!",
+    "authors": [
+      "Ferdinand Malcher",
+      "Johannes Hoppe",
+      "Danny Koppenhagen"
+    ],
+    "published": "2019-04-30T00:00:00.000Z",
+    "subtitle": "Grundlagen, fortgeschrittene Themen und Best Practices – mit NativeScript und NgRx",
+    "thumbnails": [
+      {
+        "url": "https://api3.angular-buch.com/images/angular_auflage2.jpg",
+        "title": "Front Cover"
+      }
+    ],
+    "description": "Die Autoren ..."
+  }
+
+# delete existing book
+DELETE {{API_URL}}/book/9783864906466
+Content-Type: application/json

@@ -1,4 +1,5 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
+import axios, { AxiosResponse } from "axios";
 
 import Book from "../types/Book";
 
@@ -8,7 +9,25 @@ interface Props {
 }
 
 export default function BookDetails(props: Props): ReactElement {
-  const book = props.book;
+  const [book, setBook] = useState<Book>();
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `https://api3.angular-buch.com/books/${props.book.isbn}`,
+    }).then((response: AxiosResponse<Book>) => setBook(response.data));
+  }, [props.book.isbn]);
+
+  if (!book) {
+    return <p>Lade</p>;
+  }
+
+  const onDelete = () => {
+    axios({
+      method: "delete",
+      url: `https://api3.angular-buch.com/books/${props.book.isbn}`,
+    }).then(props.onShowList);
+  };
 
   const getRatings = () => new Array(book.rating || 0).fill(true);
 
@@ -25,7 +44,9 @@ export default function BookDetails(props: Props): ReactElement {
         <div className="level-item has-text-centered">
           <div>
             <p className="heading">published</p>
-            <p className="title">{book.published.toLocaleDateString()}</p>
+            <p className="title">
+              {new Date(book.published).toLocaleDateString()}
+            </p>
           </div>
         </div>
         <div className="level-item has-text-centered">
@@ -63,6 +84,9 @@ export default function BookDetails(props: Props): ReactElement {
       </div>
       <button onClick={props.onShowList} className="button m-1 is-link">
         Back
+      </button>
+      <button onClick={onDelete} className="button m-1 is-danger">
+        Delete
       </button>
     </>
   );

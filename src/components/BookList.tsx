@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
+import { useState, useEffect, ReactElement } from "react";
+import axios, { AxiosResponse } from "axios";
 
-import { books } from "../shared/books";
 import BookListItem from "./BookListItem";
 import Book from "../types/Book";
 
@@ -9,6 +9,19 @@ interface Props {
 }
 
 export default function BookList(props: Props): ReactElement {
+  const [books, setBooks] = useState<Book[]>();
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "https://api3.angular-buch.com/books",
+    }).then((response: AxiosResponse<Book[]>) => setBooks(response.data));
+  }, []);
+
+  if (!books) {
+    return <p>Lade</p>;
+  }
+
   return (
     <ul className="content m-2">
       {books.map((book) => (
