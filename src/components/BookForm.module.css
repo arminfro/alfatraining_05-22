@@ -1,0 +1,15 @@
+.bookForm input:invalid {
+  border-color: #f14668;
+}
+
+.bookForm:invalid {
+  border: 1px solid #f14668;
+}
+
+.bookForm input:valid {
+  border-color: #48c78e;
+}
+
+.bookForm:valid {
+  border-color: #48c78e;
+}

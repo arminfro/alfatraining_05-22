@@ -1,7 +1,8 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { bookApi } from "../shared/BookApi";
+import css from "./BookForm.module.css";
 
 export default function BookForm(): ReactElement {
   const buildThumbnail = (title = "", url = "") => ({ title, url });
@@ -85,12 +86,13 @@ export default function BookForm(): ReactElement {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className={css.bookForm} onSubmit={onSubmit}>
       <div className="field">
         <label className="label">Buchtitel</label>
         <input
           className="input"
           placeholder="Titel"
+          required
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
@@ -115,6 +117,8 @@ export default function BookForm(): ReactElement {
         <input
           className="input"
           placeholder="Isbn"
+          pattern="\d{10}|\d{13}"
+          required
           value={isbn}
           onChange={(e) => {
             setIsbn(e.target.value);
@@ -127,6 +131,7 @@ export default function BookForm(): ReactElement {
         <input
           className="input"
           type="date"
+          required
           value={published}
           onChange={(e) => {
             setPublished(e.target.value);
@@ -158,6 +163,7 @@ export default function BookForm(): ReactElement {
               key={index}
               className="input"
               placeholder="Author"
+              required
               value={author}
               onChange={(e) => {
                 onChangeAuthor(e.target.value, index);
@@ -196,6 +202,8 @@ export default function BookForm(): ReactElement {
               placeholder="Url"
               className="input"
               value={thumbnail.url}
+              required
+              type="url"
               onChange={(e) => {
                 onChangeThumbnail(index, { url: e.target.value });
               }}
