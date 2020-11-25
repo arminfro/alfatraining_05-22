@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
+import BookSearch from "./BookSearch";
 
 interface Props {
   children: ReactElement;
@@ -22,6 +23,9 @@ export default function Layout(props: Props): ReactElement {
           <NavLink className={navLinkClassname} to="/books/new">
             neues Buch
           </NavLink>
+        </div>
+        <div className="navbar-end">
+          <BookSearch width={450} />
         </div>
       </nav>
 
