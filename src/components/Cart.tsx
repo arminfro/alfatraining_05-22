@@ -1,29 +1,26 @@
-import BookListItem from "./BookListItem";
-
-import { Book } from "../types/Book";
 import { Link } from "react-router-dom";
 import { ReactElement } from "react";
-import { Action, Store } from "../store";
+import { Action, useStore } from "../store";
 
-interface Props {
-  dispatch: React.Dispatch<Action>;
-  store: Store;
-}
+import { Book } from "../types/Book";
+import BookListItem from "./BookListItem";
 
-export default function Cart(props: Props): ReactElement {
-  const books = props.store.cart
+export default function Cart(): ReactElement {
+  const { store, dispatch } = useStore();
+
+  const books = store.cart
     .reduce((acc: Book[], book) => {
       acc.find((book_) => book_.isbn === book.isbn) || acc.push(book);
       return acc;
     }, [])
     .sort((bookA, bookB) => Number(bookA.isbn) - Number(bookB.isbn));
 
-  const countBook = (book: Book) =>
-    props.store.cart.filter((_book) => _book.isbn === book.isbn).length;
+  const countBook = (book: Book): number =>
+    store.cart.filter((_book) => _book.isbn === book.isbn).length;
 
   const onChangeCount = (e: React.MouseEvent, action: Action) => {
     e.preventDefault();
-    props.dispatch(action);
+    dispatch(action);
   };
 
   return (
