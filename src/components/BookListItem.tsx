@@ -4,13 +4,17 @@ import Book from "../types/Book";
 
 interface Props {
   book: Book;
+  onShowDetails: (book: Book) => void;
 }
 
 export default function BookListItem(props: Props): ReactElement {
   const book = props.book;
 
   return (
-    <li className="columns is-vcentered is-clickable">
+    <li
+      onClick={() => props.onShowDetails(book)}
+      className="columns is-vcentered is-clickable"
+    >
       <div className="column is-1 m-2">
         {book.thumbnails && book.thumbnails[0] && (
           <img
