@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import Book from "../types/Book";
+import { Book } from "../types/Book";
 import LoadingSpinner from "./shared/LoadingSpinner";
 import { useBookApi, bookApi } from "../shared/BookApi";
 
@@ -35,9 +35,7 @@ export default function BookDetails(props: Props): ReactElement {
         <div className="level-item has-text-centered">
           <div>
             <p className="heading">published</p>
-            <p className="title">
-              {new Date(book.published).toLocaleDateString()}
-            </p>
+            <p className="title">{book.published.toLocaleDateString()}</p>
           </div>
         </div>
         <div className="level-item has-text-centered">

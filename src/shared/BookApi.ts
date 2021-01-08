@@ -1,6 +1,8 @@
 import { useState, useEffect, SetStateAction, Dispatch } from "react";
 import axios, { AxiosResponse, Method } from "axios";
 
+import { factoryRawToBook, isBookBase } from "../types/Book";
+
 // local utility type
 type SetState<T> = Dispatch<SetStateAction<T | undefined>>;
 
@@ -53,3 +55,18 @@ export function bookApi<T>(
     data,
   }).then((response: AxiosResponse<T>) => callback(response.data));
 }
+
+/*
+ * Axios Interceptor
+ * Factory BookWithDateString to Book
+ */
+axios.interceptors.response.use((response: AxiosResponse) => {
+  if (response.data) {
+    if (Array.isArray(response.data) && response.data.every(isBookBase)) {
+      response.data = response.data.map(factoryRawToBook);
+    } else if (isBookBase(response.data)) {
+      response.data = factoryRawToBook(response.data);
+    }
+  }
+  return response;
+});
