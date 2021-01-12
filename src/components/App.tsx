@@ -2,8 +2,12 @@ import React, { ReactElement } from "react";
 
 export default function App(): ReactElement {
   return (
-    <p>
-      Edit <code>src/App.tsx</code> and save to reload.
-    </p>
+    <div className="container">
+      <section className="hero is-info is-fullheight">
+        <div className="hero-body">
+          <p className="title">My Title</p>
+        </div>
+      </section>
+    </div>
   );
 }
