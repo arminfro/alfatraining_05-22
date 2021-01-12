@@ -5,11 +5,7 @@ import { Book } from "../types/Book";
 import LoadingSpinner from "./shared/LoadingSpinner";
 import { useBookApi, bookApi } from "../shared/BookApi";
 
-interface Props {
-  onShowDetails: (book: Book) => void;
-}
-
-export default function BookList(props: Props): ReactElement {
+export default function BookList(): ReactElement {
   const [books, setBooks] = useBookApi<Book[]>("books");
 
   if (!books) {
@@ -25,11 +21,7 @@ export default function BookList(props: Props): ReactElement {
   return books.length !== 0 ? (
     <ul className="content m-2">
       {books.map((book) => (
-        <BookListItem
-          onShowDetails={props.onShowDetails}
-          book={book}
-          key={book.isbn}
-        />
+        <BookListItem book={book} key={book.isbn} />
       ))}
     </ul>
   ) : (

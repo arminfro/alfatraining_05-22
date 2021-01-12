@@ -1,23 +1,25 @@
 import { ReactElement } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Book } from "../types/Book";
 import LoadingSpinner from "./shared/LoadingSpinner";
 import { useBookApi, bookApi } from "../shared/BookApi";
 
-interface Props {
-  book: Book;
-  onShowList: () => void;
-}
-
-export default function BookDetails(props: Props): ReactElement {
-  const [book] = useBookApi<Book>(`books/${props.book.isbn}`);
+export default function BookDetails(): ReactElement {
+  const { isbn } = useParams<{ isbn: string }>();
+  const navigate = useNavigate();
+  const book = useBookApi<Book>(`books/${isbn}`)[0];
 
   if (!book) {
-    return <LoadingSpinner name={`Buch ${props.book.isbn}`} />;
+    return <LoadingSpinner name={`Buch ${isbn}`} />;
   }
 
+  const onShowList = () => {
+    navigate("/books");
+  };
+
   const onDelete = () => {
-    bookApi("delete", `books/${props.book.isbn}`, props.onShowList);
+    bookApi("delete", `books/${isbn}`, onShowList);
   };
 
   const getRatings = () => new Array(book.rating || 0).fill(true);
@@ -71,7 +73,7 @@ export default function BookDetails(props: Props): ReactElement {
             />
           ))}
       </div>
-      <button onClick={props.onShowList} className="button m-1 is-link">
+      <button onClick={onShowList} className="button m-1 is-link">
         Back
       </button>
       <button onClick={onDelete} className="button m-1 is-danger">
