@@ -19,6 +19,9 @@ export default function Layout(props: Props): ReactElement {
           <NavLink className={navLinkClassname} to="/books">
             Bücher
           </NavLink>
+          <NavLink className={navLinkClassname} to="/books/new">
+            neues Buch
+          </NavLink>
         </div>
       </nav>
 
