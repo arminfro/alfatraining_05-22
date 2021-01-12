@@ -30,6 +30,8 @@
     "lint": "eslint --fix --ext .ts --ext .tsx .",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "yarn test -- --coverage",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

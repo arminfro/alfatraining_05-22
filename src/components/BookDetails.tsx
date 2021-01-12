@@ -4,8 +4,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Book } from "../types/Book";
 import LoadingSpinner from "./shared/LoadingSpinner";
 import { useBookApi, bookApi } from "../shared/BookApi";
+import { Action } from "../store";
 
-export default function BookDetails(): ReactElement {
+interface Props {
+  dispatch: React.Dispatch<Action>;
+}
+
+export default function BookDetails(props: Props): ReactElement {
   const { isbn } = useParams<{ isbn: string }>();
   const navigate = useNavigate();
   const book = useBookApi<Book>(`books/${isbn}`)[0];
@@ -20,6 +25,10 @@ export default function BookDetails(): ReactElement {
 
   const onDelete = () => {
     bookApi("delete", `books/${isbn}`, onShowList);
+  };
+
+  const onAddToCart = () => {
+    props.dispatch({ type: "addToCart", book });
   };
 
   const getRatings = () => new Array(book.rating || 0).fill(true);
@@ -81,6 +90,9 @@ export default function BookDetails(): ReactElement {
       </button>
       <button className="button m-1 is-warning">
         <Link to={`/books/${book.isbn}/edit`}>Edit</Link>
+      </button>
+      <button onClick={onAddToCart} className="button m-1 is-primary">
+        Add To Cart
       </button>
     </>
   );

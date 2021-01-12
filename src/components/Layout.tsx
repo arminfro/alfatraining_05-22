@@ -23,6 +23,9 @@ export default function Layout(props: Props): ReactElement {
           <NavLink className={navLinkClassname} to="/books/new">
             neues Buch
           </NavLink>
+          <NavLink to="/cart" className={navLinkClassname}>
+            Shopping Cart
+          </NavLink>
         </div>
         <div className="navbar-end">
           <BookSearch width={450} />

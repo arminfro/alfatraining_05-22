@@ -19,11 +19,13 @@ export default function BookList(): ReactElement {
   };
 
   return books.length !== 0 ? (
-    <ul className="content m-2">
-      {books.map((book) => (
-        <BookListItem book={book} key={book.isbn} />
-      ))}
-    </ul>
+    <>
+      <ul className="content m-2">
+        {books.map((book) => (
+          <BookListItem book={book} key={book.isbn} />
+        ))}
+      </ul>
+    </>
   ) : (
     <article className="message is-info">
       <div className="message-header">
