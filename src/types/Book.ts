@@ -2,8 +2,8 @@ export interface Book extends BookWithoutDate {
   published: Date;
 }
 
-interface BookWithDateString extends BookWithoutDate {
-  published: string;
+export interface BookWithDateString extends BookWithoutDate {
+  published: string
 }
 
 interface BookWithoutDate {

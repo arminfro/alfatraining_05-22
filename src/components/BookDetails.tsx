@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { Book } from "../types/Book";
 import LoadingSpinner from "./shared/LoadingSpinner";
@@ -78,6 +78,9 @@ export default function BookDetails(): ReactElement {
       </button>
       <button onClick={onDelete} className="button m-1 is-danger">
         Delete
+      </button>
+      <button className="button m-1 is-warning">
+        <Link to={`/books/${book.isbn}/edit`}>Edit</Link>
       </button>
     </>
   );

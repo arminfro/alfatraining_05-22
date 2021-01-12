@@ -1,25 +1,26 @@
-import { ReactElement, useState } from "react";
+import { Method } from "axios";
+import React, { ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { bookApi } from "../shared/BookApi";
+import { BookWithDateString } from "../types/Book";
 import css from "./BookForm.module.css";
 
-export default function BookForm(): ReactElement {
+interface Props extends Required<Omit<BookWithDateString, "rating">> {
+  isEdit: boolean;
+}
+
+export default function BookForm(props: Props): ReactElement {
   const buildThumbnail = (title = "", url = "") => ({ title, url });
 
-  const [title, setTitle] = useState("");
-  const [subtitle, setSubtitle] = useState("");
-  const [isbn, setIsbn] = useState(
-    // dev string, alternativ: ''
-    Math.floor(Math.random() * 99999999999 + 111111111).toString()
+  const [title, setTitle] = useState(props.title);
+  const [subtitle, setSubtitle] = useState(props.subtitle);
+  const [isbn, setIsbn] = useState(props.isbn);
+  const [description, setDescription] = useState(props.description);
+  const [authors, setAuthors] = useState(props.authors);
+  const [thumbnails, setThumbnails] = useState(
+    props.thumbnails || [buildThumbnail("", "")]
   );
-  const [description, setDescription] = useState("");
-  const [authors, setAuthors] = useState([""]);
-  const [thumbnails, setThumbnails] = useState([
-    // dev strings, alternativ: buildThumbnail("", ""),
-    buildThumbnail("title", "https://ng-buch.de/public/monkey-thinking.svg"),
-  ]);
-  const [published, setPublished] = useState("");
+  const [published, setPublished] = useState(props.published);
 
   const navigate = useNavigate();
 
@@ -35,7 +36,11 @@ export default function BookForm(): ReactElement {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    bookApi("post", "books", () => navigate("/books"), book());
+    const [method, path]: [Method, string] = props.isEdit
+      ? ["put", `books/${props.isbn}`]
+      : ["post", "books"];
+
+    bookApi(method, path, () => navigate(`/${path}`), book());
   };
 
   const onChangeAuthor = (value: string, index: number) => {
@@ -115,6 +120,7 @@ export default function BookForm(): ReactElement {
       <div className="field">
         <label className="label">Isbn</label>
         <input
+          readOnly={props.isEdit}
           className="input"
           placeholder="Isbn"
           pattern="\d{10}|\d{13}"
