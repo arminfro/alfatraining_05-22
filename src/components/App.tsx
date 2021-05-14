@@ -1,13 +1,11 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
+
+import ProjectList from "./ProjectList";
 
 export default function App(): ReactElement {
   return (
     <div className="container">
-      <section className="hero is-info is-fullheight">
-        <div className="hero-body">
-          <p className="title">My Title</p>
-        </div>
-      </section>
+      <ProjectList />
     </div>
   );
 }

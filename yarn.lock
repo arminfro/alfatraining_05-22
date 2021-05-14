@@ -4715,6 +4715,11 @@ human-signals@^2.1.0:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
 
+icons-css-ion@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/icons-css-ion/-/icons-css-ion-1.0.0.tgz#060699e381b1158a1bbe15005a3e3cfb3a1b37ae"
+  integrity sha512-fqjkD4KBCoX0HYCbjbjmmgq+qFx9fONF73J/0fpgpxdBEaUCTvVei8eFHz9Aj58QbOYCahKIrYtvdopEJOwx4g==
+
 iconv-lite@0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
