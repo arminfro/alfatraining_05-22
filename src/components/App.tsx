@@ -1,6 +1,7 @@
 import { ReactElement, useState } from "react";
 
 import Project from "../types/Project";
+import ClassCounter from "./ClassCounter";
 import ProjectDetails from "./ProjectDetails";
 import ProjectList from "./ProjectList";
 
@@ -17,6 +18,7 @@ export default function App(): ReactElement {
 
   return (
     <div className="container">
+      <ClassCounter />
       {project ? (
         <ProjectDetails project={project} onShowList={onShowList} />
       ) : (
