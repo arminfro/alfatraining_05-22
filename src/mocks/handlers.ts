@@ -127,6 +127,18 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(projects));
   }),
 
+  // GET single
+  rest.get<Project | undefined, { id: string }>(
+    "/api/projects/:id",
+    (req, res, ctx) => {
+      const id = +req.params.id;
+      return res(
+        ctx.status(200),
+        ctx.json(projects.find((project) => project.id === id))
+      );
+    }
+  ),
+
   // POST new
   rest.post<Omit<Project, "id">>("/api/projects", (req, res, ctx) => {
     const newProject = {

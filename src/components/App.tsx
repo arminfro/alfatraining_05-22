@@ -2,6 +2,7 @@ import { ReactElement, useState } from "react";
 
 import Project from "../types/Project";
 import ClassCounter from "./ClassCounter";
+import FunctionalCounter from "./FunctionalCounter";
 import ProjectDetails from "./ProjectDetails";
 import ProjectList from "./ProjectList";
 
@@ -18,9 +19,12 @@ export default function App(): ReactElement {
 
   return (
     <div className="container">
-      <ClassCounter />
+      <div className="section">
+        <FunctionalCounter />
+        <ClassCounter />
+      </div>
       {project ? (
-        <ProjectDetails project={project} onShowList={onShowList} />
+        <ProjectDetails projectId={project.id} onShowList={onShowList} />
       ) : (
         <ProjectList onShowDetails={onShowDetails} />
       )}

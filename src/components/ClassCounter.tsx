@@ -17,22 +17,27 @@ export default class ClassCounter extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    this.intervalId = window.setInterval(() => {
-      this.setState((currentState) => {
-        return { counter: currentState.counter + 1 };
-      });
-    }, 1000);
+    this.intervalId = window.setInterval(this.onIncrement, 1000);
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.intervalId);
   }
 
+  onIncrement = (): void => {
+    this.setState((currentState) => {
+      return { counter: currentState.counter + 1 };
+    });
+  };
+
   render(): ReactElement {
     return (
-      <div className="section">
+      <>
         <p>Class Counter: {this.state.counter}</p>
-      </div>
+        <button onClick={this.onIncrement} className="ui button">
+          +
+        </button>
+      </>
     );
   }
 }
