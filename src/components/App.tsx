@@ -8,6 +8,7 @@ import ProjectList from "./ProjectList";
 
 export default function App(): ReactElement {
   const [project, setProject] = useState<Project>();
+  const [showCounter, _setShowCounter] = useState(true);
 
   const onShowDetails = (project_: Project) => {
     setProject(project_);
@@ -19,10 +20,12 @@ export default function App(): ReactElement {
 
   return (
     <div className="container">
-      <div className="section">
-        <FunctionalCounter />
-        <ClassCounter />
-      </div>
+      {showCounter && (
+        <div className="section">
+          <FunctionalCounter />
+          <ClassCounter />
+        </div>
+      )}
       {project ? (
         <ProjectDetails projectId={project.id} onShowList={onShowList} />
       ) : (

@@ -10,6 +10,7 @@ interface State {
 
 export default class ClassCounter extends React.Component<Props, State> {
   intervalId: number | undefined;
+  defaultTitle!: string;
 
   constructor(props: Props) {
     super(props);
