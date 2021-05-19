@@ -4,11 +4,7 @@ import { useProjectApi } from "../shared/ProjectApi";
 import Project from "../types/Project";
 import ProjectListItem from "./ProjectListItem";
 
-interface Props {
-  onShowDetails: (project: Project) => void;
-}
-
-function ProjectList(props: Props): ReactElement {
+function ProjectList(): ReactElement {
   const [projects] = useProjectApi<Project[]>("projects");
 
   if (!projects) {
@@ -18,11 +14,7 @@ function ProjectList(props: Props): ReactElement {
   return (
     <div className="columns content m-2" style={{ padding: 20 }}>
       {projects.map((project) => (
-        <ProjectListItem
-          key={project.id}
-          project={project}
-          onShowDetails={props.onShowDetails}
-        />
+        <ProjectListItem key={project.id} project={project} />
       ))}
     </div>
   );

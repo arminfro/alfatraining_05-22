@@ -1,21 +1,21 @@
 import { ReactElement } from "react";
+import { useNavigate, useParams } from "react-router";
 
 import { useProjectApi } from "../shared/ProjectApi";
 import Project from "../types/Project";
 import ProjectProgress from "./ProjectProgress";
 import ProjectTimes from "./ProjectTimes";
 
-interface Props {
-  projectId: number;
-  onShowList: () => void;
-}
-
-function ProjectDetails(props: Props): ReactElement {
-  const [project] = useProjectApi<Project>(`projects/${props.projectId}`);
+function ProjectDetails(): ReactElement {
+  const { projectId } = useParams<{ projectId: string }>();
+  const navigate = useNavigate();
+  const [project] = useProjectApi<Project>(`projects/${projectId}`);
 
   if (!project) {
     return <p>Lade</p>;
   }
+
+  const onShowList = () => navigate("/projects");
 
   return (
     <div className="section">
@@ -50,7 +50,7 @@ function ProjectDetails(props: Props): ReactElement {
           <p>{project.status}</p>
         </div>
       </div>
-      <button onClick={props.onShowList} className="button m-1 is-primary">
+      <button onClick={onShowList} className="button m-1 is-primary">
         Back
       </button>
     </div>

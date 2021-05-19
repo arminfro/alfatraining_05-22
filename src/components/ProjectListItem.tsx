@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 import Project from "../types/Project";
 import ProjectProgress from "./ProjectProgress";
@@ -6,15 +7,14 @@ import ProjectTimes from "./ProjectTimes";
 
 interface Props {
   project: Project;
-  onShowDetails: (project: Project) => void;
 }
 
 function ProjectListItem(props: Props): ReactElement {
   const project = props.project;
 
   return (
-    <div
-      onClick={() => props.onShowDetails(project)}
+    <Link
+      to={`/projects/${project.id}`}
       className="card m-4 column is-clickable"
     >
       <div className="card-content m-15">
@@ -68,7 +68,7 @@ function ProjectListItem(props: Props): ReactElement {
           </table>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

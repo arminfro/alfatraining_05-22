@@ -1,36 +1,49 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
+import {
+  BrowserRouter,
+  Navigate,
+  NavLink,
+  Route,
+  Routes,
+} from "react-router-dom";
 
-import Project from "../types/Project";
 import ClassCounter from "./ClassCounter";
 import FunctionalCounter from "./FunctionalCounter";
 import ProjectDetails from "./ProjectDetails";
 import ProjectList from "./ProjectList";
 
 export default function App(): ReactElement {
-  const [project, setProject] = useState<Project>();
-  const [showCounter, _setShowCounter] = useState(true);
-
-  const onShowDetails = (project_: Project) => {
-    setProject(project_);
-  };
-
-  const onShowList = () => {
-    setProject(undefined);
-  };
+  const navLinkClassname = ({ isActive }: { isActive: boolean }) =>
+    `navbar-item ${isActive ? "is-active" : ""}`;
 
   return (
-    <div className="container">
-      {showCounter && (
-        <div className="section">
-          <FunctionalCounter />
-          <ClassCounter />
+    <BrowserRouter>
+      <nav className="container navbar is-dark" role="navigation">
+        <div className="navbar-start">
+          <NavLink to="/home" className={navLinkClassname}>
+            Home
+          </NavLink>
+          <NavLink to="/projects" className={navLinkClassname}>
+            Projects
+          </NavLink>
+          <NavLink to="/functional-counter" className={navLinkClassname}>
+            Functional Counter
+          </NavLink>
+          <NavLink to="/class-counter" className={navLinkClassname}>
+            Class Counter
+          </NavLink>
         </div>
-      )}
-      {project ? (
-        <ProjectDetails projectId={project.id} onShowList={onShowList} />
-      ) : (
-        <ProjectList onShowDetails={onShowDetails} />
-      )}
-    </div>
+      </nav>
+      <div className="container">
+        <Routes>
+          <Route path="/functional-counter" element={<FunctionalCounter />} />
+          <Route path="/class-counter" element={<ClassCounter />} />
+          <Route path="/projects/:projectId" element={<ProjectDetails />} />
+          <Route path="/projects" element={<ProjectList />} />
+          <Route path="/home" element={<p>Home</p>} />
+          <Route path="/" element={<Navigate to="/home" />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
