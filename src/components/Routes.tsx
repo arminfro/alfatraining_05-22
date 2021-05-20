@@ -4,6 +4,7 @@ import { Navigate, Route, Routes as RRDRoutes } from "react-router-dom";
 import ClassCounter from "./ClassCounter";
 import FunctionalCounter from "./FunctionalCounter";
 import ProjectDetails from "./ProjectDetails";
+import ProjectForm from "./ProjectForm";
 import ProjectList from "./ProjectList";
 
 function Routes(): ReactElement {
@@ -11,6 +12,7 @@ function Routes(): ReactElement {
     <RRDRoutes>
       <Route path="/functional-counter" element={<FunctionalCounter />} />
       <Route path="/class-counter" element={<ClassCounter />} />
+      <Route path="/projects/new" element={<ProjectForm />} />
       <Route path="/projects/:projectId" element={<ProjectDetails />} />
       <Route path="/projects" element={<ProjectList />} />
       <Route path="/home" element={<p>Home</p>} />
