@@ -2,6 +2,7 @@ import { ReactElement, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { projectApi } from "../shared/ProjectApi";
+import css from "./ProjectForm.module.css";
 
 export default function ProjectForm(): ReactElement {
   const buildTime = () => ({ title: "", begin: "", end: "" });
@@ -44,12 +45,14 @@ export default function ProjectForm(): ReactElement {
     setTimes((currentTimes) => currentTimes.filter((_time, i) => i !== index));
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className={css.projectForm} onSubmit={onSubmit}>
       <div className="field">
         <label className="label">Titel</label>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
+          minLength={3}
           className="input"
           type="text"
           placeholder="Titel"
@@ -61,6 +64,7 @@ export default function ProjectForm(): ReactElement {
         <input
           value={img}
           onChange={(e) => setImg(e.target.value)}
+          required
           className="input"
           type="url"
           placeholder="Image Url"
@@ -99,7 +103,7 @@ export default function ProjectForm(): ReactElement {
         </label>
 
         {times.map((time, index) => (
-          <div className="field is-grouped">
+          <div key={index} className="field is-grouped">
             <input
               value={time.title}
               onChange={(e) => onChangeTimes(index, "title", e.target.value)}
@@ -110,6 +114,7 @@ export default function ProjectForm(): ReactElement {
             <input
               value={time.begin}
               onChange={(e) => onChangeTimes(index, "begin", e.target.value)}
+              required
               className="input"
               type="date"
               placeholder="Begin"
@@ -117,6 +122,7 @@ export default function ProjectForm(): ReactElement {
             <input
               value={time.end}
               onChange={(e) => onChangeTimes(index, "end", e.target.value)}
+              required
               className="input"
               type="date"
               placeholder="End"
