@@ -4,28 +4,45 @@ import { useNavigate } from "react-router";
 import { projectApi } from "../shared/ProjectApi";
 import css from "./ProjectForm.module.css";
 
-export default function ProjectForm(): ReactElement {
+interface Time {
+  title: string;
+  begin: string;
+  end: string;
+}
+
+interface Props {
+  title: string;
+  img: string;
+  status: string;
+  progress: string;
+  times: Time[];
+  projectId?: number;
+}
+
+export default function ProjectForm(props: Props): ReactElement {
   const buildTime = () => ({ title: "", begin: "", end: "" });
 
-  const [title, setTitle] = useState("");
-  const [img, setImg] = useState("");
-  const [status, setStatus] = useState("in-progress");
-  const [progress, setProgress] = useState("1");
-  const [times, setTimes] = useState([buildTime()]);
+  const [title, setTitle] = useState(props.title);
+  const [img, setImg] = useState(props.img);
+  const [status, setStatus] = useState(props.status);
+  const [progress, setProgress] = useState(props.progress);
+  const [times, setTimes] = useState(props.times);
 
   const navigate = useNavigate();
+
+  const isEdit = !!props.projectId;
 
   const formProject = () => {
     return { title, img, status, progress, times };
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     projectApi(
-      "post",
-      "projects",
+      isEdit ? "put" : "post",
+      isEdit ? `projects/${props.projectId}` : "projects",
       () => {
-        navigate("/projects");
+        navigate(isEdit ? `/projects/${props.projectId}` : "/projects");
       },
       formProject()
     );

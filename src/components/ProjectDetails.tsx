@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 import { useProjectApi } from "../shared/ProjectApi";
 import Project from "../types/Project";
@@ -53,6 +54,12 @@ function ProjectDetails(): ReactElement {
       <button onClick={onShowList} className="button m-1 is-primary">
         Back
       </button>
+      <Link
+        className="button m-1 is-warning"
+        to={`/projects/${projectId}/edit`}
+      >
+        Edit
+      </Link>
     </div>
   );
 }
