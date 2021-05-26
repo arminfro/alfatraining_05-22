@@ -1,3 +1,10 @@
+import React, {
+  createContext,
+  Dispatch,
+  ReactElement,
+  useContext,
+  useReducer,
+} from "react";
 import Project from "./types/Project";
 
 export interface Store {
@@ -37,4 +44,22 @@ export function reducer(store: Store, action: Actions): Store {
     default:
       return store;
   }
+}
+
+interface StoreContext {
+  store: Store;
+  dispatch: Dispatch<Actions>;
+}
+
+const StoreContext = createContext({} as StoreContext);
+
+export const useStore = (): StoreContext => useContext(StoreContext);
+
+export function StoreProvider(props: { children: ReactElement }): ReactElement {
+  const [store, dispatch] = useReducer(reducer, initialStore);
+  return (
+    <StoreContext.Provider value={{ store, dispatch }}>
+      {props.children}
+    </StoreContext.Provider>
+  );
 }
