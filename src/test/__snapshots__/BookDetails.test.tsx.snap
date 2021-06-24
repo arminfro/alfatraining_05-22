@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookDetails rendering and button clicks matches snapshot 1`] = `
+<body>
+  <div>
+    <h1
+      class="title"
+      data-testid="book-details"
+    >
+      Angular
+    </h1>
+    <div
+      class="level"
+    >
+      <div
+        class="level-item has-text-centered"
+      >
+        <div>
+          <p
+            class="heading"
+          >
+            ISBN
+          </p>
+          <p
+            class="title"
+          >
+            9783864906466
+          </p>
+        </div>
+      </div>
+      <div
+        class="level-item has-text-centered"
+      >
+        <div>
+          <p
+            class="heading"
+          >
+            published
+          </p>
+          <p
+            class="title"
+          >
+            4/30/2019
+          </p>
+        </div>
+      </div>
+      <div
+        class="level-item has-text-centered"
+      >
+        <div>
+          <p
+            class="heading"
+          >
+            Rating
+          </p>
+          <p
+            class="title"
+          >
+            <i
+              class="ion-star has-text-warning"
+            />
+            <i
+              class="ion-star has-text-warning"
+            />
+            <i
+              class="ion-star has-text-warning"
+            />
+            <i
+              class="ion-star has-text-warning"
+            />
+            <i
+              class="ion-star has-text-warning"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="columns is-vcentered"
+    >
+      <div
+        class="column is-3"
+      >
+        <h4
+          class="subtitle"
+        >
+          Authoren
+        </h4>
+        Ferdinand Malcher, Johannes Hoppe, Danny Koppenhagen
+      </div>
+      <div
+        class="column is-9"
+      >
+        <h4
+          class="subtitle"
+        >
+          Beschreibung
+        </h4>
+        Die Autoren führen Sie mit einem anspruchsvollen Beispielprojekt durch die Welt von Angular. Lernen Sie Schritt für Schritt, wie Sie strukturierte und modulare Single-Page-Anwendungen entwickeln. Nach der erfolgreichen ersten Auflage wurde dieses Buch grundlegend aktualisiert und erweitert:
+      Durchgängig aktualisiert auf Angular 7 und neuere Versionen, Redux mit Reactive Extensions for Angular (NgRx), Ausführliches Kapitel zu RxJS und Observables, Server-Side Rendering mit Angular Universal, HTTP-Interceptoren, Kompakter Schnelleinstieg in Angular mit Stackblitz.
+      Praktisch: Der Programmcode zu jeder einzelnen Entwicklungsphase ist auf GitHub verfügbar. So können Sie alle Schritte gut nachvollziehen und auch Teile überspringen.
+      Die Autoren Ferdinand Malcher, Johannes Hoppe und Danny Koppenhagen sind erfahrene Workshopleiter und internationale Konferenzsprecher. In diesem praxisorientierten Buch vermitteln sie die Erkenntnisse und Best Practices aus über 3 Jahren täglicher Arbeit mit Angular. Neben den Grundlagen werden auch fortgeschrittene Themen abgedeckt. Weitere behandelte Themen sind unter anderem:
+      Testing mit Jasmine, Karma und Protractor, Angular CLI, Komponenten, Pipes und Direktiven, Modulsystem, Routing, Formularverarbeitung, Dependency Injection und Services, Ahead-of-Time-Kompilierung (AOT), Deployment, Internationalisierung (i18n), Mobile Anwendungen mit NativeScript.
+      Das Buch setzt lediglich Vorkenntnisse in JavaScript, HTML und CSS voraus. Wer noch nicht mit TypeScript vertraut ist, findet in diesem Buch eine kompakte Einführung.
+      Nach der Lektüre sind Sie für den Projektalltag mit Angular gewappnet und können robuste Webanwendungen mit dem Framework entwickeln. Auf der Website zum Buch werden außerdem regelmäßig Aktualisierungen und Neuigkeiten rund um Angular veröffentlicht.
+      </div>
+    </div>
+    <div
+      class="columns is-vcentered"
+    >
+      <img
+        alt="Front Cover"
+        class="image"
+        src="https://api3.angular-buch.com/images/angular_auflage2.jpg"
+        style="width: 140px;"
+      />
+      <img
+        alt="Rückseite"
+        class="image"
+        src="https://api3.angular-buch.com/images/angular_auflage2_back.jpg"
+        style="width: 140px;"
+      />
+      <img
+        alt="Update Hinweis"
+        class="image"
+        src="https://api3.angular-buch.com/images/angular_auflage2_update-note.jpg"
+        style="width: 140px;"
+      />
+      <img
+        alt="Als gebundenes Buch und E-Book verfügbar"
+        class="image"
+        src="https://api3.angular-buch.com/images/angular_auflage2_book+ebook.jpg"
+        style="width: 140px;"
+      />
+    </div>
+    <button
+      class="button m-1 is-link"
+    >
+      Back
+    </button>
+    <button
+      class="button m-1 is-danger"
+    >
+      Delete
+    </button>
+    <button
+      class="button m-1 is-warning"
+    >
+      <a
+        href="/books/9783864906466/edit"
+      >
+        Edit
+      </a>
+    </button>
+    <button
+      class="button m-1 is-primary"
+    >
+      Add To Cart
+    </button>
+  </div>
+</body>
+`;

@@ -3,6 +3,9 @@ import axios, { AxiosResponse, Method } from "axios";
 
 import { factoryRawToBook, isBookBase } from "../types/Book";
 
+// config
+export const baseUrl = "https://api3.angular-buch.com/secure";
+
 // local utility type
 type SetState<T> = Dispatch<SetStateAction<T | undefined>>;
 
@@ -46,14 +49,14 @@ export function bookApi<T>(
   callback: SetState<T>,
   data = {}
 ): void {
-  const baseUrl = "https://api3.angular-buch.com/secure";
-
   axios({
     method: method,
     url: `${baseUrl}/${path}`,
     headers: { Authorization: "Bearer 1234567890" },
     data,
-  }).then((response: AxiosResponse<T>) => callback(response.data));
+  }).then((response: AxiosResponse<T>) => {
+    return callback(response.data);
+  });
 }
 
 /*

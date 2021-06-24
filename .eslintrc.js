@@ -4,6 +4,8 @@ module.exports = {
     "eslint:recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react",
   ],
   parserOptions: {
     ecmaVersion: 2018,
@@ -21,7 +23,13 @@ module.exports = {
       version: "detect",
     },
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ["react", "testing-library", "@typescript-eslint"],
+  overrides: [
+    {
+      files: ["src/test/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      extends: ["plugin:testing-library/react"],
+    },
+  ],
   rules: {
     // https://github.com/typescript-eslint/typescript-eslint/issues/363
     "@typescript-eslint/no-unused-vars": "off",

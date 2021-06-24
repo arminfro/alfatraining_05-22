@@ -20,7 +20,7 @@ export default function BookList(): ReactElement {
 
   return books.length !== 0 ? (
     <>
-      <ul className="content m-2">
+      <ul data-testid="book-list" className="content m-2">
         {books.map((book) => (
           <BookListItem book={book} key={book.isbn} />
         ))}

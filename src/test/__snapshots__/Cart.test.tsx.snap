@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookDetails rendering and button clicks matches snapshot 1`] = `
+<body>
+  <div>
+    <ul
+      class="content m-2"
+      data-testid="shopping-cart"
+    >
+      <li>
+        <a
+          class="columns is-vcentered is-clickable"
+          href="/books/9783864906466"
+        >
+          <div
+            class="column is-1 m-2"
+          >
+            <img
+              alt="Front Cover"
+              class="image"
+              src="https://api3.angular-buch.com/images/angular_auflage2.jpg"
+            />
+          </div>
+          <div
+            class="column is-9"
+          >
+            <div
+              class="title is-5"
+            >
+              Angular
+            </div>
+            <div
+              class="subtitle is-6 mb-2"
+            >
+              Grundlagen, fortgeschrittene Themen und Best Practices – mit NativeScript und NgRx
+            </div>
+            <div
+              class="has-text-grey"
+            >
+              <span>
+                Ferdinand Malcher
+                , 
+              </span>
+              <span>
+                Johannes Hoppe
+                , 
+              </span>
+              <span>
+                Danny Koppenhagen
+              </span>
+              <br />
+              ISBN: 
+              9783864906466
+            </div>
+          </div>
+          <div
+            class="column is-2"
+          >
+            <div
+              class="field has-addons"
+            >
+              <p
+                class="control"
+              >
+                <span
+                  class="button"
+                  data-testid="count-target"
+                >
+                  1
+                </span>
+              </p>
+              <p
+                class="control"
+              >
+                <button
+                  class="button is-success"
+                  data-testid="counter-up"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="ion-add-circle-outline"
+                    />
+                  </span>
+                </button>
+              </p>
+              <p
+                class="control"
+              >
+                <button
+                  class="button is-danger"
+                  data-testid="counter-down"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="ion-remove-circle-outline"
+                    />
+                  </span>
+                </button>
+              </p>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
+`;

@@ -91,7 +91,11 @@ export default function BookForm(props: Props): ReactElement {
   };
 
   return (
-    <form className={css.bookForm} onSubmit={onSubmit}>
+    <form
+      data-testid={`book-form-is-edit-${props.isEdit}`}
+      className={css.bookForm}
+      onSubmit={onSubmit}
+    >
       <div className="field">
         <label className="label">Buchtitel</label>
         <input

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<body>
+  <div>
+    <h4
+      class="title"
+    >
+      Willkommen beim BookMonkey
+    </h4>
+    <div
+      class="section"
+    >
+      <a
+        class="button is-link mt-2"
+        href="/books"
+      >
+        Buchliste ansehen
+      </a>
+    </div>
+    <div
+      class="section"
+    >
+      <div
+        style="width: 800px;"
+      >
+        <h2
+          class="title"
+        >
+          Book Search
+        </h2>
+        <div
+          class="panel-block"
+        >
+          <p
+            class="control has-icons-right"
+          >
+            <input
+              class="input"
+              type="text"
+              value=""
+            />
+            <span
+              class="icon is-small is-right"
+            >
+              <i
+                class="ion-search-outline"
+              />
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

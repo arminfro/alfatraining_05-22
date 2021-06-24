@@ -2,7 +2,7 @@ import { Book } from "../types/Book";
 import { reducer } from "./reducer";
 import { Action } from "./actions";
 import { StoreContext } from "./context";
-import {StoreProvider} from "./StoreProvider";
+import { StoreProvider } from "./StoreProvider";
 import { useStore } from "./use-store";
 
 interface Store {

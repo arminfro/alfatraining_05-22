@@ -26,17 +26,20 @@ export default function Cart(): ReactElement {
   return (
     <>
       {books.length ? (
-        <ul className="content m-2">
+        <ul data-testid="shopping-cart" className="content m-2">
           {books.map((book) => (
             <BookListItem key={book.isbn} book={book}>
               <div className="column is-2">
                 <div className="field has-addons">
                   <p className="control">
-                    <span className="button">{countBook(book)}</span>
+                    <span className="button" data-testid="count-target">
+                      {countBook(book)}
+                    </span>
                   </p>
                   <p className="control">
                     <button
                       className="button is-success"
+                      data-testid="counter-up"
                       onClick={(e) =>
                         onChangeCount(e, { type: "addToCart", book })
                       }
@@ -49,6 +52,7 @@ export default function Cart(): ReactElement {
                   <p className="control">
                     <button
                       className="button is-danger"
+                      data-testid="counter-down"
                       onClick={(e) =>
                         onChangeCount(e, { type: "removeFromCart", book })
                       }

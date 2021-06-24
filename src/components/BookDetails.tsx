@@ -32,7 +32,9 @@ export default function BookDetails(): ReactElement {
 
   return (
     <>
-      <h1 className="title">{book.title}</h1>
+      <h1 data-testid="book-details" className="title">
+        {book.title}
+      </h1>
       <div className="level">
         <div className="level-item has-text-centered">
           <div>
