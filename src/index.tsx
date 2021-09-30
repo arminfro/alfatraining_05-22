@@ -7,11 +7,23 @@ import App from "./components/App";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+
+const render = () => {
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+};
+
+if (process.env.NODE_ENV === "development") {
+  import("./mocks/browser").then(({ worker }) => {
+    worker.start();
+    render();
+  });
+} else {
+  render();
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
